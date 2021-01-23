@@ -32,56 +32,75 @@ const people = [
 
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
-var sixteenthCenturyFolk = inventors.filter(inventor => inventor.year >= 1500 && inventor.year <= 1599);
-console.table(sixteenthCenturyFolk);
+function sixteenthCenturyFolk(folks) {
+  return folks.filter(folk => folk.year >= 1500 && folk.year <= 1599)
+};
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors first and last names
-const inventorNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
-console.log(inventorNames);
+function inventorNames(inventorPeople) {
+  return inventorPeople.map(inventor => `${inventor.first} ${inventor.last}`)
+};
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
-const inventorsByBirthday = inventors.sort((a, b) => a.year - b.year);
-console.table(inventorsByBirthday);
+function inventorsByBirthday(inventorPeople) {
+  return inventorPeople.sort((a, b) => a.year - b.year)
+};
 
 // Solution from Video
-const ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
-console.table(ordered);
+function ordered(inventorPeople) {
+  return inventorPeople.sort((a, b) => a.year > b.year ? 1 : -1)
+};
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
-const totalLifespan = inventors.reduce((acc, inventor) => acc + (inventor.passed - inventor.year), 0);
-console.log(`Total lifespan of all inventors: ${totalLifespan}`);
+function totalLifespan(inventorPeople) {
+  return inventorPeople.reduce((acc, inventor) => acc + (inventor.passed - inventor.year), 0)
+};
 
 // 5. Sort the inventors by years lived
-const inventorsByLifespan = inventors.sort((a, b) => (a.passed - a.year) - (b.passed - b.year)).reverse();
-console.log(inventorsByLifespan);
+function inventorsByLifespan(inventorPeople) {
+  return inventorPeople.sort((a, b) => (a.passed - a.year) - (b.passed - b.year)).reverse()
+};
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-const category = document.querySelector('.mw-category');
-const links = Array.from(category.querySelectorAll('a'));
-const de = links
-  .map(link => link.textContent)
-  .filter(streetName => streetName.include('de'));
+// const category = document.querySelector('.mw-category');
+// const links = Array.from(category.querySelectorAll('a'));
+// const de = links
+  // .map(link => link.textContent)
+  // .filter(streetName => streetName.include('de'));
 
 
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
-const peopleByLastName = people.sort();
-console.log(peopleByLastName);
+function peopleByLastName(peeple) {
+  return peeple.sort()
+};
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-const dataCount = data.reduce(function(allVehicles, vehicle) {
-  if (vehicle in allVehicles) {
-    allVehicles[vehicle]++
-  } else {
-    allVehicles[vehicle] = 1
-  }
-  return allVehicles
+function dataCount(input) {
+  return input.reduce(function(allVehicles, vehicle) {
+    if (vehicle in allVehicles) {
+      allVehicles[vehicle]++
+    } else {
+      allVehicles[vehicle] = 1
+    }
+    return allVehicles
 }, {});
-console.table(dataCount);
+};
+
+module.exports = {
+  sixteenthCenturyFolk,
+  inventorNames,
+  inventorsByBirthday,
+  ordered,
+  totalLifespan,
+  inventorsByLifespan,
+  peopleByLastName,
+  dataCount
+};
